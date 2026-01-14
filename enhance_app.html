@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <!-- 基本元标签 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO元标签 -->
+    <title>清晰大师 - 一键提升画质，照片视频清晰化工具</title>
+    <meta name="description" content="清晰大师是一款专业的照片和视频清晰度增强工具，支持一键提升画质，提供照片清晰、视频清晰等功能，注册即送50次免费使用次数。">
+    <meta name="keywords" content="清晰大师, 照片清晰, 视频清晰, 画质提升, 图像增强, 视频增强">
+    <meta name="author" content="清晰大师团队">
+    <meta name="robots" content="index, follow">
+    
+    <!-- 社交媒体元标签 -->
+    <meta property="og:title" content="清晰大师 - 一键提升画质">
+    <meta property="og:description" content="清晰大师是一款专业的照片和视频清晰度增强工具">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.enhancemaster.com">
+    <meta property="og:image" content="https://images.pexels.com/photos/462166/pexels-photo-462166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+    
+    <!-- 网站图标 -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+    <!-- CSS样式 -->
+    <link rel="stylesheet" href="enhance_app.css">
+    
+    <!-- 现代浏览器兼容性 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="app-header">
+        <div class="header-content">
+            <div class="logo">清晰大师</div>
+            
+            <!-- 主导航 -->
+            <nav class="main-nav">
+                <a href="#" class="nav-link active">首页</a>
+                <a href="#photo" class="nav-link">照片清晰</a>
+                <a href="#video" class="nav-link">视频清晰</a>
+                <a href="#pricing" class="nav-link">会员套餐</a>
+                <a href="#about" class="nav-link">关于我们</a>
+                <a href="#contact" class="nav-link">联系我们</a>
+            </nav>
+            
+            <!-- 用户操作 -->
+            <div class="user-actions">
+                <button class="user-btn" id="loginBtn">登录</button>
+                <button class="user-btn" id="registerBtn">注册</button>
+                <button class="user-btn" id="premiumPageBtn">开通会员</button>
+                <!-- 用户头像 -->
+                <div id="userAvatar" class="user-avatar" style="display: none;">
+                    <div class="avatar-icon">👤</div>
+                    <div class="avatar-dropdown" style="display: none;">
+                        <div class="dropdown-item" id="editAvatar">编辑头像</div>
+                        <div class="dropdown-item" id="viewProfile">查看资料</div>
+                        <div class="dropdown-item" id="settings">设置</div>
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-item" id="logout">退出登录</div>
+                    </div>
+                </div>
+                <button class="user-btn" id="logoutBtn" style="display: none;">退出</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <div class="app-container" style="display: flex;">
+        <!-- 左侧导航 -->
+        <aside class="sidebar">
+            <nav class="sidebar-nav">
+                <button class="nav-btn active" data-tab="photo">照片清晰</button>
+                <button class="nav-btn" data-tab="video">视频清晰</button>
+                <button class="nav-btn" data-tab="settings">设置</button>
+            </nav>
+        </aside>
+        
+        <!-- 主内容 -->
+        <main class="main-content">
+            <!-- 轮播图区域 -->
+            <section class="banner-section">
+                <div class="banner-container">
+                    <div class="banner-slides">
+                        <div class="banner-slide active">
+                            <img src="https://images.pexels.com/photos/462166/pexels-photo-462166.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="雪山风景1">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://images.pexels.com/photos/164005/pexels-photo-164005.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="雪山风景2">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://images.pexels.com/photos/1721932/pexels-photo-1721932.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="雪山风景3">
+                        </div>
+                        <div class="banner-slide">
+                            <img src="https://images.pexels.com/photos/241316/pexels-photo-241316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="雪山风景4">
+                        </div>
+                    </div>
+                    <!-- 轮播控制按钮 -->
+                    <button class="banner-btn prev-btn">‹</button>
+                    <button class="banner-btn next-btn">›</button>
+                </div>
+            </section>
+
+            <!-- 功能区域 -->
+            <section class="功能-section">
+                <!-- 照片清晰区域 -->
+                <div class="功能-tab active" id="photo-tab">
+                    <div class="功能-container">
+                        <h2>照片一键变清晰</h2>
+                        <div class="upload-area">
+                            <div class="upload-box">
+                                <input type="file" id="photoUpload" accept="image/*" class="file-input">
+                                <div class="upload-content">
+                                    <div class="upload-icon">📷</div>
+                                    <p>点击或拖拽照片到此处</p>
+                                    <small>支持 JPG, PNG, BMP 格式</small>
+                                </div>
+                                <!-- 上传预览 -->
+                                <div id="uploadPreview" class="upload-preview" style="display: none;">
+                                    <img id="previewImage" src="" alt="上传预览">
+                                    <button id="removePreview" class="remove-preview-btn">×</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 照片预览模态框 -->
+                        <div id="photoPreviewModal" class="modal" style="display: none;">
+                            <div class="modal-content" style="max-width: 90vw; max-height: 90vh; overflow: auto;">
+                                <div class="modal-header">
+                                    <h3>照片预览</h3>
+                                    <button class="close-btn" onclick="closeModal()">&times;</button>
+                                </div>
+                                <div class="modal-body" style="padding: 0;text-align: center;">
+                                    <img id="previewFullImage" src="" alt="完整预览" style="max-width: 100%; max-height: 80vh;">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 清晰度和大小选择 -->
+                        <div class="enhance-options" style="display: none; margin: 2rem auto; max-width: 600px;">
+                            <div class="options-container" style="background: rgba(102, 126, 234, 0.05); padding: 1.5rem; border-radius: 15px;">
+                                <h3 style="text-align: center; margin-bottom: 1.5rem; color: #fff;">选择增强选项</h3>
+                                <div class="option-row" style="display: flex; gap: 2rem; margin-bottom: 1.5rem;">
+                                    <div class="option-item" style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; color: #fff; font-weight: 600;">清晰度级别</label>
+                                        <select id="clarityLevel" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #444; border-radius: 10px;">
+                                            <option>标准清晰</option>
+                                            <option>高清</option>
+                                            <option>超高清</option>
+                                        </select>
+                                    </div>
+                                    <div class="option-item" style="flex: 1;">
+                                        <label style="display: block; margin-bottom: 0.5rem; color: #fff; font-weight: 600;">输出尺寸</label>
+                                        <select id="outputSize" style="width: 100%; padding: 0.8rem; background: #333; color: #fff; border: 1px solid #444; border-radius: 10px;">
+                                            <option>保持原尺寸</option>
+                                            <option>720P (1280×720)</option>
+                                            <option>1080P (1920×1080)</option>
+                                            <option>4K (3840×2160)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="option-actions" style="display: flex; gap: 1rem; justify-content: center;">
+                                    <button id="cancelEnhance" class="option-btn" style="padding: 0.8rem 2rem; background: #444; color: #fff; border: none; border-radius: 25px; cursor: pointer;">取消</button>
+                                    <button id="confirmEnhance" class="option-btn" style="padding: 0.8rem 2rem; background: linear-gradient(45deg, #667eea, #764ba2); color: white; border: none; border-radius: 25px; cursor: pointer;">开始增强</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 处理进度 -->
+                        <div class="progress-section" style="display: none;">
+                            <div class="progress-container">
+                                <div class="progress-info">
+                                    <span>正在处理...</span>
+                                    <span id="progressPercent">100%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div id="progressFill" class="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 结果区域 -->
+                        <div class="result-area" style="display: none;">
+                            <div class="result-header">
+                                <h3>处理结果</h3>
+                                <div class="result-actions">
+                                    <button id="downloadPhoto" class="download-btn">下载图片</button>
+                                    <button id="deletePhoto" class="delete-btn">删除图片</button>
+                                </div>
+                            </div>
+                            <div class="result-images">
+                                <div class="result-item">
+                                    <h4>原图</h4>
+                                    <div class="image-container">
+                                        <img id="originalPhoto" src="" alt="原图">
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <h4>清晰后</h4>
+                                    <div class="image-container">
+                                        <img id="enhancedPhoto" src="" alt="清晰后">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 视频清晰区域 -->
+                <div class="功能-tab" id="video-tab">
+                    <div class="功能-container">
+                        <h2>视频一键变清晰</h2>
+                        <div class="upload-area">
+                            <div class="upload-box">
+                                <input type="file" id="videoUpload" accept="video/*" class="file-input">
+                                <div class="upload-content">
+                                    <div class="upload-icon">🎥</div>
+                                    <p>点击或拖拽视频到此处</p>
+                                    <small>支持 MP4, AVI, MOV 格式</small>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 处理进度 -->
+                        <div class="progress-section" style="display: none;">
+                            <div class="progress-container">
+                                <div class="progress-info">
+                                    <span>正在处理...</span>
+                                    <span id="videoProgressPercent">100%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div id="videoProgressFill" class="progress-fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 结果区域 -->
+                        <div class="result-area" style="display: none;">
+                            <div class="result-header">
+                                <h3>处理结果</h3>
+                                <div class="result-actions">
+                                    <button id="downloadVideo" class="download-btn">下载视频</button>
+                                    <button id="deleteVideo" class="delete-btn">删除视频</button>
+                                </div>
+                            </div>
+                            <div class="result-videos">
+                                <div class="result-item">
+                                    <h4>原视频</h4>
+                                    <div class="video-container">
+                                        <video id="originalVideo" controls src=""></video>
+                                    </div>
+                                </div>
+                                <div class="result-item">
+                                    <h4>清晰后</h4>
+                                    <div class="video-container">
+                                        <video id="enhancedVideo" controls src=""></video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 设置区域 -->
+                <div class="功能-tab" id="settings-tab">
+                    <div class="功能-container">
+                        <h2>设置</h2>
+                        <div class="settings-container">
+                            <div class="setting-item">
+                                <label>清晰度级别</label>
+                                <select>
+                                    <option>标准清晰</option>
+                                    <option>高清</option>
+                                    <option>超高清</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>输出格式</label>
+                                <select>
+                                    <option>JPG/MP4</option>
+                                    <option>PNG/MOV</option>
+                                    <option>BMP/AVI</option>
+                                </select>
+                            </div>
+                            <div class="setting-item">
+                                <label>自动保存到相册</label>
+                                <input type="checkbox" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>通知提醒</label>
+                                <input type="checkbox" checked>
+                            </div>
+                            <div class="setting-item">
+                                <label>退出登录</label>
+                                <button id="settingsLogoutBtn" class="logout-btn" style="background: transparent; color: #ff6b6b; border: 1px solid #ff6b6b; padding: 0.5rem 1rem; border-radius: 10px; cursor: pointer;">退出登录</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 次数记录侧边栏 -->
+        <aside class="usage-sidebar">
+            <div class="usage-item">
+                <span class="usage-label">剩余次数</span>
+                <span id="remainingUsesCount" class="usage-count">0</span>
+                <span class="usage-type">照片/视频</span>
+            </div>
+            <div class="usage-item">
+                <span class="usage-label">使用类型</span>
+                <span class="usage-count" style="font-size: 1.2rem;">免费</span>
+                <span class="usage-type">未登录用户</span>
+            </div>
+        </aside>
+    </div>
+    
+    <!-- 评论区域 -->
+    <section class="comments-section">
+        <div class="comments-header">
+            <h2>用户评论</h2>
+            <p>分享您的使用体验</p>
+        </div>
+        
+        <!-- 评论输入 -->
+        <div class="comment-input-section">
+            <div class="comment-input-container">
+                <textarea id="commentInput" placeholder="写下您的评论..." rows="3"></textarea>
+                <button id="submitComment" class="submit-comment-btn">发布评论</button>
+            </div>
+        </div>
+        
+        <!-- 评论列表 -->
+        <div class="comments-list" id="commentsList">
+            <!-- 示例评论 -->
+            <div class="comment-item">
+                <div class="comment-avatar">👤</div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-user">用户123</span>
+                        <span class="comment-time">刚刚</span>
+                    </div>
+                    <div class="comment-text">这个App真的很好用，照片处理效果明显！</div>
+                </div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-avatar">👤</div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-user">摄影爱好者</span>
+                        <span class="comment-time">2小时前</span>
+                    </div>
+                    <div class="comment-text">处理速度很快，效果也不错，推荐使用！</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 付费页面 -->
+    <div id="premiumPage" class="premium-page" style="display: none;">
+        <div class="page-header">
+            <h2>开通会员享更多特权</h2>
+            <button class="close-page-btn" id="closePremiumPage">×</button>
+        </div>
+        <div class="pricing-cards">
+            <!-- 价格卡片1 -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3>基础版</h3>
+                    <div class="price">
+                        <span class="price-number">20</span>
+                        <span class="price-unit">元/月</span>
+                    </div>
+                </div>
+                <div class="card-features">
+                    <div class="feature">每月100次处理</div>
+                    <div class="feature">标准清晰度</div>
+                    <div class="feature">基础支持</div>
+                    <div class="feature">720P输出</div>
+                </div>
+                <a href="#" class="buy-btn" onclick="openWeChatPay(20)">立即开通</a>
+            </div>
+            
+            <!-- 价格卡片2 -->
+            <div class="pricing-card popular">
+                <div class="popular-badge">推荐</div>
+                <div class="card-header">
+                    <h3>高级版</h3>
+                    <div class="price">
+                        <span class="price-number">40</span>
+                        <span class="price-unit">元/月</span>
+                    </div>
+                </div>
+                <div class="card-features">
+                    <div class="feature">每月500次处理</div>
+                    <div class="feature">高清清晰度</div>
+                    <div class="feature">优先支持</div>
+                    <div class="feature">1080P输出</div>
+                </div>
+                <a href="#" class="buy-btn" onclick="openWeChatPay(40)">立即开通</a>
+            </div>
+            
+            <!-- 价格卡片3 -->
+            <div class="pricing-card">
+                <div class="card-header">
+                    <h3>旗舰版</h3>
+                    <div class="price">
+                        <span class="price-number">80</span>
+                        <span class="price-unit">元/月</span>
+                    </div>
+                </div>
+                <div class="card-features">
+                    <div class="feature">无限次处理</div>
+                    <div class="feature">超高清清晰度</div>
+                    <div class="feature">专属支持</div>
+                    <div class="feature">4K输出</div>
+                </div>
+                <a href="#" class="buy-btn" onclick="openWeChatPay(80)">立即开通</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 评论区域 -->
+    <div id="commentsPage" class="comments-page" style="display: none;">
+        <div class="page-header">
+            <h2>用户评论</h2>
+            <button class="close-page-btn" id="closeCommentsPage">×</button>
+        </div>
+        
+        <!-- 评论输入 -->
+        <div class="comment-input-section">
+            <div class="comment-input-container">
+                <textarea id="commentInput" placeholder="写下您的评论..." rows="3"></textarea>
+                <button id="submitComment" class="submit-comment-btn">发布评论</button>
+            </div>
+        </div>
+        
+        <!-- 评论列表 -->
+        <div class="comments-list" id="commentsList">
+            <!-- 示例评论 -->
+            <div class="comment-item">
+                <div class="comment-avatar">👤</div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-user">用户123</span>
+                        <span class="comment-time">刚刚</span>
+                    </div>
+                    <div class="comment-text">这个App真的很好用，照片处理效果明显！</div>
+                </div>
+            </div>
+            <div class="comment-item">
+                <div class="comment-avatar">👤</div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-user">摄影爱好者</span>
+                        <span class="comment-time">2小时前</span>
+                    </div>
+                    <div class="comment-text">处理速度很快，效果也不错，推荐使用！</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 登录/注册模态框 -->
+    <div id="authModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="authModalTitle">登录</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="authForm">
+                    <!-- 登录表单 -->
+                    <div id="loginForm">
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" placeholder="请输入用户名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" placeholder="请输入密码" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="auth-btn">登录</button>
+                            <p>没有账号？<a href="#" onclick="showRegisterForm()">立即注册</a></p>
+                        </div>
+                    </div>
+                    
+                    <!-- 注册表单 -->
+                    <div id="registerForm" style="display: none;">
+                        <div class="form-group">
+                            <label>用户名</label>
+                            <input type="text" placeholder="请输入用户名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>密码</label>
+                            <input type="password" placeholder="请输入密码" required>
+                        </div>
+                        <div class="form-group">
+                            <label>确认密码</label>
+                            <input type="password" placeholder="请再次输入密码" required>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="auth-btn">注册</button>
+                            <p>已有账号？<a href="#" onclick="showLoginForm()">立即登录</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 关于我们部分 -->
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2>关于我们</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>清晰大师是一款专业的照片和视频清晰度增强工具，致力于为用户提供高质量的图像和视频增强服务。</p>
+                    <p>我们拥有先进的AI技术，可以一键提升照片和视频的清晰度，修复模糊图像，提升画质，让您的作品更加出色。</p>
+                    <p>我们的团队由一群热爱技术和摄影的专业人士组成，致力于为用户提供最好的产品和服务体验。</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">🎨</div>
+                        <div class="feature-text">AI增强技术</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <div class="feature-text">快速处理</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <div class="feature-text">安全可靠</div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📱</div>
+                        <div class="feature-text">支持多种格式</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系我们部分 -->
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2>联系我们</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-text">support@enhancemaster.com</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-text">400-123-4567</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-text">北京市朝阳区科技园区</div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="contact-text">周一至周五 9:00-18:00</div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>发送消息</h3>
+                    <form>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <input type="text" placeholder="请输入您的姓名" required>
+                        </div>
+                        <div class="form-group">
+                            <label>邮箱</label>
+                            <input type="email" placeholder="请输入您的邮箱" required>
+                        </div>
+                        <div class="form-group">
+                            <label>消息</label>
+                            <textarea placeholder="请输入您的消息" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">发送消息</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 底部信息 -->
+    <footer class="app-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-logo">清晰大师</div>
+                <div class="footer-social">
+                    <a href="#" class="social-link">微信</a>
+                    <a href="#" class="social-link">微博</a>
+                    <a href="#" class="social-link">抖音</a>
+                    <a href="#" class="social-link">B站</a>
+                </div>
+            </div>
+            <div class="footer-middle">
+                <div class="footer-column">
+                    <h4>产品服务</h4>
+                    <ul>
+                        <li><a href="#photo">照片清晰</a></li>
+                        <li><a href="#video">视频清晰</a></li>
+                        <li><a href="#pricing">会员套餐</a></li>
+                        <li><a href="#">API服务</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#about">公司简介</a></li>
+                        <li><a href="#">团队介绍</a></li>
+                        <li><a href="#">新闻动态</a></li>
+                        <li><a href="#">招贤纳士</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>法律条款</h4>
+                    <ul>
+                        <li><a href="#">隐私政策</a></li>
+                        <li><a href="#">用户协议</a></li>
+                        <li><a href="#">版权声明</a></li>
+                        <li><a href="#">免责声明</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>联系我们</h4>
+                    <ul>
+                        <li><a href="#contact">在线客服</a></li>
+                        <li><a href="#">意见反馈</a></li>
+                        <li><a href="#">联系方式</a></li>
+                        <li><a href="#">合作咨询</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 清晰大师. 保留所有权利. 京ICP备12345678号</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 微信支付弹窗 -->
+    <div id="wechatPayModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>微信支付</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="pay-info">
+                    <p>请扫码支付 <strong id="payAmount">20</strong> 元</p>
+                </div>
+                <div class="qr-code">
+                    <!-- 这里可以放置动态生成的微信支付二维码 -->
+                    <div class="qr-placeholder">微信支付二维码</div>
+                </div>
+                <p class="pay-tip">打开微信扫一扫，扫描上方二维码完成支付</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 编辑头像弹窗 -->
+    <div id="editAvatarModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑头像</h3>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="avatar-edit-container">
+                    <!-- 头像预览 -->
+                    <div class="avatar-preview-container">
+                        <div class="avatar-preview">
+                            <img id="avatarPreview" src="" alt="头像预览" style="display: none;">
+                            <div id="avatarPreviewPlaceholder" class="avatar-preview-placeholder">👤</div>
+                        </div>
+                    </div>
+                    
+                    <!-- 头像上传 -->
+                    <div class="avatar-upload-section">
+                        <input type="file" id="avatarUpload" accept="image/*" class="file-input" style="display: none;">
+                        <button id="selectAvatarBtn" class="avatar-btn">选择图片</button>
+                        <button id="saveAvatarBtn" class="avatar-btn primary">保存头像</button>
+                        <button id="removeAvatarBtn" class="avatar-btn danger">移除头像</button>
+                    </div>
+                    
+                    <!-- 头像提示 -->
+                    <div class="avatar-tips">
+                        <p>支持 JPG, PNG, GIF 格式，建议尺寸 200×200px</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="enhance_app.js"></script>
+</body>
+</html>
